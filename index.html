@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ética e Regulamentação na Pesquisa Científica</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<style>
+/* ========== VARIÁVEIS ========== */
+:root {
+  --navy:       #1a2744;
+  --navy-mid:   #243556;
+  --navy-light: #2e4468;
+  --gold:       #c9a227;
+  --gold-soft:  #f5edd6;
+  --gold-dark:  #8a6e14;
+  --cream:      #f7f4ee;
+  --cream-2:    #efebe3;
+  --white:      #ffffff;
+  --text:       #2c2c2c;
+  --text-soft:  #555555;
+  --border:     #e2dcd0;
+  --shadow:     0 4px 18px rgba(26, 39, 68, 0.08);
+  --radius:     10px;
+}
+
+/* ========== RESET ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+}
+h1, h2, h3, .serif {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: var(--navy);
+  line-height: 1.3;
+}
+img { max-width: 100%; }
+a { color: inherit; }
+
+/* ========== NAVBAR ========== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 58px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.25);
+}
+nav .logo {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+nav ul {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+nav a {
+  color: #c8d0e0;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background .2s, color .2s;
+}
+nav a:hover {
+  color: var(--gold);
+  background: rgba(201,162,39,.12);
+}
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  background:
+    linear-gradient(160deg, rgba(26,39,68,.92) 0%, rgba(26,39,68,.85) 100%),
+    repeating-linear-gradient(
+      0deg, transparent, transparent 29px,
+      rgba(201,162,39,.07) 29px, rgba(201,162,39,.07) 30px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 29px,
+      rgba(201,162,39,.07) 29px, rgba(201,162,39,.07) 30px
+    );
+  background-color: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 8% 80px;
+  color: #fff;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  max-width: 900px;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  color: #b0b8c8;
+  max-width: 620px;
+}
+.hero .btn {
+  display: inline-block;
+  margin-top: 36px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 13px 34px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background .2s, transform .2s;
+}
+.hero .btn:hover {
+  background: #e0b830;
+  transform: translateY(-2px);
+}
+
+/* ========== SECTIONS ========== */
+/* Todas as seções são full-width; o conteúdo fica no .wrap */
+section {
+  padding: 72px 0;
+}
+section.alt {
+  background: var(--cream-2);
+}
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+/* ========== TAG / TÍTULOS ========== */
+.tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+h2 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+p {
+  margin-bottom: 12px;
+  color: var(--text-soft);
+}
+p strong, li strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* Destaque — funciona em fundo claro E escuro */
+.destaque {
+  background: var(--gold-soft);
+  color: var(--gold-dark);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* ========== BLOCKQUOTE ========== */
+blockquote {
+  border-left: 5px solid var(--gold);
+  background: var(--white);
+  padding: 24px 28px;
+  margin: 24px 0;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--navy);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: var(--shadow);
+}
+blockquote .destaque {
+  font-style: normal;
+}
+
+/* ========== CARDS ========== */
+.grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+.g2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+}
+.card h3 {
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.card p, .card li {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+.card p strong, .card li strong {
+  color: var(--navy);
+}
+
+/* Card escuro */
+.card.dark {
+  background: var(--navy);
+  border-top-color: var(--gold);
+}
+.card.dark h3 { color: var(--gold); }
+.card.dark p,
+.card.dark li { color: #c8d0e0; }
+.card.dark p strong,
+.card.dark li strong { color: var(--gold); }
+.card.dark .destaque {
+  background: rgba(201,162,39,.25);
+  color: var(--gold);
+}
+
+/* ========== TIMELINE ========== */
+.timeline {
+  position: relative;
+  margin-top: 32px;
+  padding-left: 36px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 8px; bottom: 8px;
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 24px;
+  background: var(--white);
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -36px; top: 24px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 3px var(--cream);
+}
+section.alt .tl-item::before {
+  box-shadow: 0 0 0 3px var(--cream-2);
+}
+.tl-item .ano {
+  display: block;
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.tl-item h3 { margin-bottom: 8px; }
+.tl-item p { margin-bottom: 0; font-size: 0.95rem; }
+
+/* ========== TABELA ========== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  font-size: 0.92rem;
+}
+th {
+  background: var(--navy);
+  color: #fff;
+  padding: 13px 16px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-soft);
+}
+td strong { color: var(--navy); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #faf8f4; }
+
+/* ========== LISTAS ========== */
+ul.custom {
+  list-style: none;
+  margin: 8px 0 16px;
+}
+ul.custom li {
+  padding: 8px 0 8px 26px;
+  position: relative;
+  border-bottom: 1px dashed var(--border);
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+ul.custom li:last-child { border-bottom: none; }
+ul.custom li::before {
+  content: '▸';
+  color: var(--gold);
+  position: absolute;
+  left: 4px;
+  font-weight: 700;
+}
+/* listas dentro de card dark */
+.card.dark ul.custom li {
+  color: #c8d0e0;
+  border-bottom-color: rgba(201,162,39,.2);
+}
+.card.dark ul.custom li::before { color: var(--gold); }
+.card.dark ul.custom li strong { color: var(--gold); }
+
+/* ========== COMPARATIVO VS ========== */
+.vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+.vs .col {
+  padding: 26px;
+  border-radius: var(--radius);
+}
+.vs .em {
+  background: var(--white);
+  border-top: 5px solid #9a9a9a;
+  box-shadow: var(--shadow);
+}
+.vs .em h3 { color: var(--navy); }
+.vs .com {
+  background: var(--navy);
+  border-top: 5px solid var(--gold);
+}
+.vs .com h3 { color: var(--gold); }
+.vs .com p,
+.vs .com li { color: #c8d0e0; }
+.vs .com p strong,
+.vs .com li strong { color: var(--gold); }
+.vs .com ul.custom li {
+  border-bottom-color: rgba(201,162,39,.2);
+  color: #c8d0e0;
+}
+.vs .com ul.custom li::before { color: var(--gold); }
+
+/* ========== CAIXA REFLEXÃO ========== */
+.reflexao {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin: 32px 0;
+  text-align: center;
+  border-top: 4px solid var(--gold);
+}
+.reflexao h3 {
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.reflexao p {
+  color: #c8d0e0;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reflexao p strong { color: #fff; }
+.reflexao .destaque {
+  background: rgba(201,162,39,.28);
+  color: var(--gold);
+}
+
+/* ========== SUBTÍTULO DE SEÇÃO ========== */
+.sub {
+  color: var(--text-soft);
+  font-style: italic;
+  margin-bottom: 28px;
+  font-size: 1rem;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: var(--navy);
+  color: #8a94a8;
+  text-align: center;
+  padding: 48px 8%;
+}
+footer .serif {
+  color: var(--gold);
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  font-family: Georgia, serif;
+}
+footer p { color: #8a94a8; margin-bottom: 6px; font-size: 0.9rem; }
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 900px) {
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 58px; left: 0; right: 0;
+    background: var(--navy-mid);
+    flex-direction: column;
+    padding: 12px 5%;
+    gap: 2px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  }
+  nav ul.aberto { display: flex; }
+  nav a { padding: 10px 12px; font-size: 0.9rem; }
+  #menu-toggle { display: block; }
+  .vs { grid-template-columns: 1fr; }
+  .g4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}
+@media (max-width: 560px) {
+  section { padding: 52px 0; }
+  .card, .vs .col, .reflexao, .tl-item { padding: 18px; }
+  .hero { padding: 90px 6% 60px; min-height: 85vh; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">ÉTICA NA PESQUISA</span>
+  <button id="menu-toggle" aria-label="Menu"
+    onclick="document.getElementById('menu').classList.toggle('aberto')">☰</button>
+  <ul id="menu">
+    <li><a href="#historia"  onclick="this.closest('ul').classList.remove('aberto')">Casos Históricos</a></li>
+    <li><a href="#documentos" onclick="this.closest('ul').classList.remove('aberto')">Documentos</a></li>
+    <li><a href="#emcom"      onclick="this.closest('ul').classList.remove('aberto')">EM × COM</a></li>
+    <li><a href="#psicologia-br" onclick="this.closest('ul').classList.remove('aberto')">Psicologia no Brasil</a></li>
+    <li><a href="#codigo"     onclick="this.closest('ul').classList.remove('aberto')">Código de Ética</a></li>
+    <li><a href="#bioetica"   onclick="this.closest('ul').classList.remove('aberto')">Bioética</a></li>
+    <li><a href="#dilemas"    onclick="this.closest('ul').classList.remove('aberto')">Dilemas</a></li>
+    <li><a href="#raca"       onclick="this.closest('ul').classList.remove('aberto')">Raça e Antirracismo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Ética e Regulamentação <span>na Pesquisa Científica</span></h1>
+  <p>Do Código de Nuremberg ao Código de Ética do Psicólogo: compromisso social, bioética e prática antirracista.</p>
+  <a class="btn" href="#dilema">Começar pelo dilema</a>
+</header>
+
+<!-- DILEMA -->
+<section id="dilema">
+  <div class="wrap">
+    <span class="tag">Ponto de partida</span>
+    <h2>Por que a necessidade de diretrizes? Para que falamos de ética?</h2>
+    <blockquote>
+      "(...) Se um experimento científico pudesse descobrir a <u>cura</u> de uma doença grave que afeta
+      milhões de pessoas, <strong>mas</strong> para isso fosse necessário <u>omitir</u> informações ou colocar
+      em risco a saúde de <strong>100 voluntários sem</strong> o consentimento explícito deles,
+      a pesquisa seria justificável?"
+    </blockquote>
+    <p>A história da ciência respondeu a essa pergunta da pior forma possível — mais de uma vez. É a partir desses abusos que nascem as regulamentações éticas.</p>
+  </div>
+</section>
+
+<!-- CASOS HISTÓRICOS -->
+<section id="historia" class="alt">
+  <div class="wrap">
+    <span class="tag">Casos históricos</span>
+    <h2>Quando a ciência violou a dignidade humana</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Experimentos dos Médicos Nazistas (1930–1945)</h3>
+        <p>Durante a Segunda Guerra, médicos alemães usaram prisioneiros de campos de concentração (judeus, ciganos, prisioneiros de guerra) como cobaias humanas involuntárias:</p>
+        <ul class="custom">
+          <li><strong>Congelamento e hipotermia:</strong> submersão em água congelante para testar resistência e reanimação.</li>
+          <li><strong>Inoculação de doenças:</strong> infecção intencional com malária, tifo, febre amarela e gangrena.</li>
+          <li><strong>Gêmeos e mutilações (Mengele):</strong> amputações, enxertos sem anestesia, transfusões cruzadas e injeções químicas nos olhos.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Estudo da Sífilis de Tuskegee (EUA, 1932–1972)</h3>
+        <p>Conduzido pelo Serviço de Saúde Pública dos EUA com cerca de 600 homens afro-americanos de baixa renda, no Alabama.</p>
+        <ul class="custom">
+          <li>Os participantes <strong>não foram informados</strong> do diagnóstico real — diziam tratar "sangue ruim".</li>
+          <li>Sem consentimento informado durante 40 anos.</li>
+          <li>Quando a penicilina se tornou tratamento padrão (déc. 1940), os médicos <strong>ocultaram a descoberta e impediram o acesso ao remédio</strong>, apenas para observar a progressão e mortalidade da doença.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Três Estranhos Idênticos</h3>
+        <p>O documentário (Netflix) expõe o estudo em que trigêmeos idênticos foram separados ao nascer e adotados por famílias de classes sociais diferentes — sem que ninguém soubesse — para pesquisar "natureza vs. criação".</p>
+        <p><strong>O que há em comum nos participantes dessas pesquisas?</strong> Eram pessoas em situação de vulnerabilidade, tratadas como meios, não como fins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos">
+  <div class="wrap">
+    <span class="tag">Consequências e marcos regulatórios</span>
+    <h2>Os documentos que fundaram a ética em pesquisa</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="ano">1947</span>
+        <h3>Código de Nuremberg</h3>
+        <p>O Julgamento dos Médicos em Nuremberg (1946–1947) levou ao primeiro documento internacional a estabelecer a <u>obrigatoriedade absoluta</u> do <strong>consentimento voluntário do participante</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">1964</span>
+        <h3>Declaração de Helsinki</h3>
+        <p>Formulada pela Associação Médica Mundial para guiar investigações clínicas. Marco na proteção de sujeitos — inspirou a primeira resolução brasileira unificada, a <strong>CNS nº 196/96</strong>.</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">1974 / 1979</span>
+        <h3>National Research Act e Relatório Belmont</h3>
+        <p>A revelação do escândalo de Tuskegee levou à aprovação do National Research Act (1974) e à publicação do <strong>Relatório Belmont (1979)</strong>, consolidando os princípios de <u>Autonomia, Beneficência e Justiça</u>.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:48px;font-size:1.4rem;">Os princípios universais dos aspectos éticos</h2>
+    <div class="grid g4">
+      <div class="card">
+        <h3>Autonomia</h3>
+        <p>Respeito à pessoa: o participante decide por si mesmo se quer participar ou interromper a pesquisa, sem penalidades.</p>
+      </div>
+      <div class="card">
+        <h3>Beneficência</h3>
+        <p>Obrigação ética de promover o bem, garantindo benefícios reais aos sujeitos e à sociedade.</p>
+      </div>
+      <div class="card">
+        <h3>Não maleficência</h3>
+        <p>Compromisso explícito de evitar danos intencionais ou desnecessários (físicos, psicológicos ou sociais).</p>
+      </div>
+      <div class="card">
+        <h3>Justiça</h3>
+        <p>Distribuição igualitária dos riscos e benefícios decorrentes da investigação.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:40px;font-size:1.4rem;">Aspectos estruturais no Brasil</h2>
+    <ul class="custom">
+      <li><strong>CEP e CONEP:</strong> Comitê de Ética em Pesquisa e Comissão Nacional de Ética em Pesquisa — analisam riscos e benefícios, ponderando se a pesquisa propõe benefícios que superam os riscos físicos, psíquicos e/ou sociais.</li>
+      <li><strong>Garantia de privacidade:</strong> exigência de manter as respostas dos participantes anônimas ou confidenciais.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EM vs COM -->
+<section id="emcom" class="alt">
+  <div class="wrap">
+    <span class="tag">Duas lógicas de pesquisa</span>
+    <h2>Pesquisa <em>EM</em> vs. pesquisa <em>COM</em> seres humanos</h2>
+
+    <div class="vs">
+      <div class="col em">
+        <h3>Pesquisa "EM" Seres Humanos (Biomédica)</h3>
+        <ul class="custom">
+          <li>Participante visto como <strong>cobaia passiva ou objeto</strong>.</li>
+          <li>Intervenção direta no corpo e coleta de material biológico.</li>
+          <li>Foco na neutralidade, controle e eliminação da subjetividade.</li>
+        </ul>
+        <p><em>"Biomédico": aplicação imperiosa do olhar médico sobre as práticas sociais, exigindo neutralidade e controle rígido de variáveis (Cardoso de Oliveira).</em></p>
+      </div>
+      <div class="col com">
+        <h3>Pesquisa "COM" Seres Humanos (CHS)</h3>
+        <ul class="custom">
+          <li>Participante é um <strong>interlocutor ativo</strong> e agente social.</li>
+          <li>Conhecimento produzido na <em>intersubjetividade</em> e no diálogo.</li>
+          <li>Processo aberto, dinâmico e dependente do contexto de campo.</li>
+        </ul>
+        <p>O conhecimento se constrói na intersubjetividade. A pesquisa de campo qualitativa depende de <em>microdecisões</em> que criam rumos imprevisíveis — impossibilitando protocolos rígidos definidos <em>a priori</em>.</p>
+      </div>
+    </div>
+
+    <div class="reflexao">
+      <h3>Novos olhares sobre os participantes</h3>
+      <p><strong>O Paternalismo:</strong> o sistema clássico assume que os sujeitos são inerentemente vulneráveis e carecem de proteção externa — <strong>quem decide isso?</strong> Tratar todos paternalisticamente retira dos participantes seu poder de decisão. Muitas pesquisas sociais estudam pessoas que detêm mais poder que o próprio pesquisador.</p>
+      <p style="margin-top:14px;"><strong>Proteção ao Pesquisador:</strong> em pesquisas que denunciam abusos institucionais ou corrupção, o regulamento deveria prever também a <u>proteção do pesquisador</u> contra retaliações institucionais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PSICOLOGIA NO BRASIL -->
+<section id="psicologia-br">
+  <div class="wrap">
+    <span class="tag">Compromisso social</span>
+    <h2>O Compromisso Social da Psicologia e o Código de Ética</h2>
+    <p class="sub">A construção de uma profissão abrangente no Brasil (60 anos).</p>
+
+    <h2 style="font-size:1.35rem;">Psicologia como Tecnologia de Controle</h2>
+    <ul class="custom">
+      <li>Movimento dos testes no Brasil: instrumentos de racionalização da prática educativa.</li>
+      <li><strong>Liga Brasileira de Higiene Mental (1923):</strong> criou laboratório de Psicologia; mais tarde articulou-se a pensamento reacionário, com posições xenófobas e racistas.</li>
+      <li><strong>Frenologia:</strong> pretendia medir caráter e faculdades mentais pelo formato do crânio — usada para "provar" superioridade/inferioridade racial e criminalizar a população negra (Nina Rodrigues).</li>
+      <li><strong>Contexto de 1962:</strong> reconhecimento legal em meio ao projeto de modernização do Brasil — apoio à industrialização (seleção dos "mais aptos"), classificação escolar (triagem de trabalhadores) e foco no <strong>sujeito universal</strong>, descolado da realidade social.</li>
+    </ul>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">O problema da importação</h2>
+    <p>As noções abstratas e universalistas do humano permitiram a instalação acrítica de teorias do norte global. Até os anos 70, a Psicologia havia sido <strong>transplantada, sem ser aclimatada</strong>, ao Brasil. Essa posição <strong>a-histórica, liberal e positivista</strong> distanciou a profissão das condições de vida da maioria da população. A saída: recuperar a memória da profissão e reconhecer que <strong>a psicologia no Brasil deve ser brasileira</strong>.</p>
+
+    <blockquote>"Toda a psicologia é social." — <strong>Silvia Lane (1984)</strong></blockquote>
+
+    <div class="grid g2">
+      <div class="card dark">
+        <h3>Garantia de Direitos</h3>
+        <ul class="custom">
+          <li><strong>Direitos Humanos:</strong> não há prática psicológica neutra diante da violação.</li>
+          <li><strong>Políticas Públicas:</strong> inserção massiva no SUS e SUAS.</li>
+          <li><strong>Luta Antimanicomial:</strong> ruptura com a lógica de exclusão e defesa da liberdade.</li>
+          <li><strong>Reconhecimento e combate</strong> ao racismo e às desigualdades.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Qualidade da Prática</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Instrumento</th><th>Impacto Ético-Político</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Código de Ética (2005)</strong></td><td>Atualização para práticas em políticas públicas e compromisso social.</td></tr>
+              <tr><td><strong>Resolução 01/99</strong></td><td>Proibição de patologização e "cura" da homossexualidade. Marco histórico.</td></tr>
+              <tr><td><strong>SATEPSI</strong></td><td>Qualificação e rigor técnico na avaliação psicológica brasileira.</td></tr>
+              <tr><td><strong>CREPOP</strong></td><td>Referências técnicas para atuação em Saúde, Assistência e Educação.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓDIGO DE ÉTICA -->
+<section id="codigo" class="alt">
+  <div class="wrap">
+    <span class="tag">Evolução histórica</span>
+    <h2>Os quatro Códigos de Ética do Psicólogo</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="ano">1964–1967</span>
+        <h3>Anteprojeto</h3>
+        <p>Proposto por Oswaldo de Barros Santos com base em normas da <em>New York State Psychological Association</em>, traduzido por Betty Katzenstein e Eliezer Schneider. Discutido em assembleias da ABP/SBPC (Ribeirão Preto, Belo Horizonte, Blumenau) e aprovado em 1966. Estabeleceu a psicologia como "ciência disciplinadora e disciplinada", antes mesmo da criação do CFP.</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">1975 — Resolução CFP nº 008</span>
+        <h3>Primeiro Código de Ética</h3>
+        <p>5 Princípios Fundamentais e 40 artigos em 13 capítulos. Críticos (S.L. Mello) apontaram seu <strong>tom "médico"</strong>: a jovem profissão buscava as prerrogativas e o prestígio social da medicina. Primeiro instrumento legal oficial após a criação do CFP (Lei nº 5.766/1971).</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">1979 — Resolução CFP nº 029</span>
+        <h3>Segundo Código de Ética</h3>
+        <p>Contexto de expansão (cerca de 20 mil psicólogos). Revisão analisou 13 códigos de outras profissões. Passou a 50 artigos; sigilo e relações com a justiça ganharam ênfase; práticas datadas ("interrogatório sob hipnose") foram excluídas. Ainda com "ranço corporativista" (C.R. Drawin).</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">1987 — Resolução CFP nº 002</span>
+        <h3>Terceiro Código de Ética</h3>
+        <p>Fruto da abertura política ("Diretas Já"), com consulta ampla à categoria. Pela primeira vez, definição filosófica de ética (Aristóteles) como <strong>"modo de ser"</strong>. Sugeria que o psicólogo deveria ser ético <em>antes</em> de cumprir normas — flexibilidade e reflexão.</p>
+      </div>
+      <div class="tl-item">
+        <span class="ano">2005 — Resolução CFP nº 010 (Atual)</span>
+        <h3>Quarto Código de Ética</h3>
+        <p>Construção coletiva: Fóruns Nacionais de Ética geraram 420 teses. Código "enxuto" (25 artigos), propositalmente generalista: do modelo <strong>prescritivo</strong> ao modelo <strong>reflexivo</strong>. Incorporou direitos humanos, censurando exclusão, preconceito e discriminação. Alinhado à <strong>Constituição de 1988</strong>: o sujeito como histórico, social e político.</p>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:48px;">Ética × Opinião</h2>
+    <div class="vs">
+      <div class="col em">
+        <h3>A Esfera Pessoal</h3>
+        <p>Valores, crenças religiosas, opiniões políticas e vivências individuais — a subjetividade do aluno que acaba de chegar.</p>
+        <p><strong style="color:#b33;">Risco: atuação baseada no senso comum.</strong></p>
+      </div>
+      <div class="col com">
+        <h3>A Esfera Ética</h3>
+        <p>Corpo de práticas norteadas por padrões técnicos e normas coletivas. Busca o reconhecimento social da categoria.</p>
+        <p><strong>Objetivo: responsabilização e práxis científica.</strong></p>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:48px;">Princípios Fundamentais do Código (2005)</h2>
+    <div class="grid g3">
+      <div class="card"><h3>I. Respeito à Liberdade</h3><p>Trabalho baseado no respeito e promoção da liberdade, dignidade, igualdade e integridade, apoiado nos Direitos Humanos.</p></div>
+      <div class="card"><h3>II. Qualidade de Vida</h3><p>Visar à saúde e à qualidade de vida das pessoas e coletividades; contribuir para eliminar negligência, discriminação, exploração e violência.</p></div>
+      <div class="card"><h3>III. Responsabilidade Social</h3><p>Analisar crítica e historicamente a realidade política, econômica, social e cultural.</p></div>
+      <div class="card"><h3>IV. Aprimoramento</h3><p>Contribuir para o desenvolvimento da Psicologia como campo científico e profissional.</p></div>
+      <div class="card"><h3>V. Universalização</h3><p>Promover o acesso às informações, aos conhecimentos e serviços da profissão.</p></div>
+      <div class="card"><h3>VI. Zelo</h3><p>Exercício profissional com dignidade, rejeitando situações em que a Psicologia esteja sendo aviltada.</p></div>
+      <div class="card"><h3>VII. Relações de Poder</h3><p>Considerar o impacto das relações de poder nos contextos de atuação profissional.</p></div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:48px;">Deveres do Psicólogo</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Responsabilidade Técnica</h3>
+        <ul class="custom">
+          <li>Assumir responsabilidades <u>exclusivamente</u> por atividades para as quais possua capacitação.</li>
+          <li>Prestar serviços de qualidade, fundamentados na <strong>ciência psicológica, na ética e na legislação</strong>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Transparência e Sigilo</h3>
+        <ul class="custom">
+          <li>Estabelecer <strong>acordos</strong> que respeitem integralmente os direitos do usuário.</li>
+          <li>Comunicar resultados para a tomada de decisões; orientar sobre encaminhamentos.</li>
+          <li>Respeitar o <u>sigilo profissional</u>; zelar pelo destino seguro de arquivos confidenciais.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Conduta Profissional</h3>
+        <ul class="custom">
+          <li>Agir com <strong>respeito e solidariedade</strong> para com outros psicólogos e profissionais.</li>
+          <li>Sugerir substituto quando não puder continuar o atendimento.</li>
+          <li><strong>Denunciar</strong> exercício ilegal ou irregular da profissão e transgressões ao Código.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:48px;">O que é vedado (limites)</h2>
+    <div class="grid g2">
+      <div class="card dark">
+        <h3>1. Violência, preconceito e abuso de poder</h3>
+        <ul class="custom">
+          <li>Praticar ou ser conivente com negligência, discriminação, exploração, violência, crueldade ou opressão.</li>
+          <li>Induzir o paciente a convicções políticas, filosóficas, morais, religiosas ou de orientação sexual.</li>
+          <li>Usar conhecimentos psicológicos como instrumento de castigo, tortura ou violência.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>2. Conivência com irregularidades</h3>
+        <ul class="custom">
+          <li>Acumpliciar-se com o exercício ilegal da profissão.</li>
+          <li>Ser conivente com faltas éticas de outros psicólogos.</li>
+          <li>Vincular o título a técnicas não regulamentadas; interferir na validade de instrumentos ou adulterar resultados.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>3. Conflito de interesses</h3>
+        <ul class="custom">
+          <li>Estabelecer com a pessoa atendida (ou familiares) relação que interfira negativamente nos objetivos do serviço.</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>4. Exploração financeira</h3>
+        <ul class="custom">
+          <li>Induzir pessoas a recorrer a seus serviços; desviar pacientes de instituições visando benefício próprio.</li>
+          <li>Prolongar desnecessariamente a prestação de serviços.</li>
+          <li>Pleitear comissões, empréstimos ou vantagens além dos honorários; receber porcentagem por encaminhamento.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIOÉTICA -->
+<section id="bioetica">
+  <div class="wrap">
+    <span class="tag">Conceitos fundamentais</span>
+    <h2>Ética, Moral &amp; Bioética — implicações para o fazer do psicólogo</h2>
+
+    <div class="grid g3">
+      <div class="card">
+        <h3>Ética</h3>
+        <p>Reflexão filosófica geral e teórica sobre os fundamentos da moralidade. Supõe <u>reflexividade</u> e autocomprometimento consciente. Tem caráter <strong>deontológico</strong>: conjunto de deveres e normas de uma categoria profissional.</p>
+      </div>
+      <div class="card">
+        <h3>Moral</h3>
+        <p>Conjunto prático de convicções, crenças pessoais ou religiosas de um indivíduo ou grupo. Opera na tomada de decisão imediata do cotidiano (correto/incorreto). <strong>Risco profissional:</strong> quando a moral pessoal do terapeuta <em>atravessa</em> os parâmetros éticos da profissão.</p>
+      </div>
+      <div class="card">
+        <h3>Bioética</h3>
+        <p><em>Bios</em> (vida) + <em>ethike</em> (ética). Disciplina aplicada e interdisciplinar: estudo da conduta humana nas ciências da vida e da saúde. Foca na <u>resolução de conflitos práticos concretos</u>. Todo ato de cuidado, antes de ser técnico, é <strong>um ato ético de imensa responsabilidade moral</strong>.</p>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:48px;">Os quatro princípios fundamentais da bioética</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Autonomia</h3>
+        <p>Capacidade e <u>liberdade</u> de governar a si mesmo. Exige duas condições: <strong>capacidade de deliberação</strong> (compreender, analisar, escolher) e <strong>voluntariedade</strong> (livre de coações). Há um dever moral de tratar o paciente sempre como <u>fim em si mesmo</u>, nunca como meio.</p>
+      </div>
+      <div class="card">
+        <h3>Beneficência</h3>
+        <p>Dever ético de promover ativamente o bem-estar e o interesse máximo do paciente. Na psicologia: considerar a pessoa em sua <u>totalidade</u> (física, psicológica, social e espiritual), restabelecendo saúde mental e prevenindo danos.</p>
+      </div>
+      <div class="card">
+        <h3>Não Maleficência</h3>
+        <p>Obrigação estrita de não causar danos intencionais. O processo clínico mobiliza o que há de mais íntimo no sujeito — conteúdos com os quais ele pode não estar pronto para lidar. Exige excelente embasamento científico e capacitação.</p>
+      </div>
+      <div class="card">
+        <h3>Justiça</h3>
+        <p>Todas as pessoas têm direito de ter suas necessidades de saúde atendidas de forma <u>imparcial</u>. Equidade na distribuição de riscos e benefícios; atendimento sem discriminação; acesso não impedido por barreiras sociais ou financeiras injustas.</p>
+      </div>
+    </div>
+
+    <div class="reflexao">
+      <h3>Atravessamento do fazer do psicólogo</h3>
+      <p>A Clínica, para Figueiredo, é "Morada" simbólica: a saúde não é a mera remissão de sintomas, <strong>mas sim</strong> o usufruto do corpo e da mente — a capacidade de <strong>fruir, trabalhar e pensar</strong>. O consultório surge como possibilidade de <strong>morada simbólica</strong> (holding e sustentação): o sujeito busca acolhimento <strong>sendo o que ele é</strong>.</p>
+      <p style="margin-top:14px;">O psicólogo carrega seus próprios valores e crenças, mas a verdadeira ética exige a <strong>suspensão de qualquer julgamento moralista</strong>. Quando a moral pessoal "fala mais alto" que a escuta clínica, ele <strong>viola a integridade do outro</strong> — o que pode redundar em gravíssima <span class="destaque">revitimização</span>.</p>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:40px;">O que o psicólogo precisa desenvolver em si?</h2>
+    <div class="grid g4">
+      <div class="card">
+        <h3>1. Serenidade <em>(Gelassenheit)</em></h3>
+        <p>Heidegger/Figueiredo: "habitar sereno e confiado" diante do mistério da vida do paciente, renunciando à pretensão de ter resposta pré-fabricada para cada dor.</p>
+      </div>
+      <div class="card">
+        <h3>2. Amor Fati</h3>
+        <p>Nietzsche: aceitar e acolher o inesperado que irrompe na clínica, sem pressa de rotular ou patologizar as vozes do sujeito.</p>
+      </div>
+      <div class="card">
+        <h3>3. Respeito à Alteridade Radical</h3>
+        <p>Lévinas: inclinar-se diante do paciente em hospitalidade ao "outro" em sua diferença irredutível, sem capturá-lo em teorias rígidas.</p>
+      </div>
+      <div class="card">
+        <h3>4. Autonomização + Sensibilidade</h3>
+        <p>O objetivo final nunca é dependência ou manipulação, mas a promoção de um indivíduo autônomo — com formação afetiva para ponderar conflitos éticos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DILEMAS -->
+<section id="dilemas" class="alt">
+  <div class="wrap">
+    <span class="tag">Quando o código não basta</span>
+    <h2>Dilemas e situações clínicas no cotidiano</h2>
+    <p><strong>Qual é o tipo de situação que nosso Código de Ética não prevê?</strong></p>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Dilemas do Início da Vida</h3>
+        <p>Reprodução assistida, aconselhamento genético em casais com transtornos mentais graves e seleção de sexo de bebês — exigem investigar as motivações inconscientes dos pais para evitar a pura instrumentalização da criança.</p>
+      </div>
+      <div class="card">
+        <h3>Dilemas do Fim da Vida</h3>
+        <p>Acompanhar pacientes terminais: extensão indefinida da vida por aparelhos, desejo da família vs. autonomia do paciente fragilizado — território de dor e dilemas bioéticos complexos.</p>
+      </div>
+      <div class="card">
+        <h3>Direito ao Diálogo e à Verdade</h3>
+        <p>Revelar ou não um diagnóstico grave é um nó bioético. Ocultar a verdade sob desculpa paternalista de "proteger" retira a autonomia do paciente. O drama reside em encontrar o momento e a sensibilidade ideais para a partilha.</p>
+      </div>
+      <div class="card">
+        <h3>Quebra de Sigilo</h3>
+        <p>Em casos críticos — abuso de crianças, risco iminente de morte (suicídio, homicídio) — o sigilo precisa ser quebrado para resguardar a vida. O psicólogo deve flexibilizar regras frias com base em princípios bioéticos fundamentais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RAÇA -->
+<section id="raca">
+  <div class="wrap">
+    <span class="tag">Ética e discussão étnico-racial</span>
+    <h2>Psicologia, Relações Raciais e Prática Antirracista</h2>
+    <ul class="custom">
+      <li>As relações raciais como <strong>eixo estruturante</strong> da sociedade brasileira.</li>
+      <li>O papel da Psicologia: do reconhecimento do contexto histórico à responsabilidade ética e intervenção clínica.</li>
+      <li>Compreender as <em>dimensões do racismo</em>, seus impactos subjetivos e as normativas do CFP.</li>
+    </ul>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">A falsa "Democracia Racial" e o projeto de branqueamento</h2>
+    <ul class="custom">
+      <li>O <u>Mito da Democracia Racial</u> ("harmonia entre as três raças") atua como imposição ideológica para ocultar a realidade material e a violência do racismo.</li>
+      <li>A ideologia do <span class="destaque">branqueamento</span> abarcou políticas históricas (incentivo à imigração europeia) com o objetivo de anular a presença, a estética e a cultura negra.</li>
+      <li>"Raça" no Brasil opera via <u>fenótipo</u>, estabelecendo <u>privilégios estruturais</u> para o grupo branco e <u>desvantagens sistemáticas</u> para a população negra.</li>
+    </ul>
+
+    <blockquote>O lugar ético da Psicologia começa na <span class="destaque">escuta</span> e no <span class="destaque">reconhecimento</span> dessas narrativas históricas que foram silenciadas.</blockquote>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">As três dimensões do racismo</h2>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Institucional</h3>
+        <p>O Estado e as instituições negligenciam ou excluem a população negra de políticas públicas, direitos básicos, saúde e educação.</p>
+      </div>
+      <div class="card">
+        <h3>Interpessoal</h3>
+        <p>Interações cotidianas marcadas por tratamento desigual, estereótipos criminais, humilhações e <em>microagressões</em>.</p>
+      </div>
+      <div class="card">
+        <h3>Subjetivo</h3>
+        <p>Interiorização das violências: conflitos identitários, necessidade constante de provar o próprio valor e intenso sofrimento psíquico.</p>
+      </div>
+    </div>
+
+    <blockquote>O <span class="destaque">racismo</span> produz um estado de alerta constante, esgotamento psíquico e a imposição de sentimentos de inferioridade.</blockquote>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">Intersecções de gênero</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Mulher negra</h3>
+        <p>Articulação indissociável entre <span class="destaque">racismo, sexismo e classe</span>. Papéis de subalternidade coloniais: a <u>mãe preta</u> (exploração do cuidado), a <u>mulata</u> (hipersexualização), a <u>mucama</u> (servidão doméstica) — Lélia González.</p>
+        <p>A imposição do papel de <strong>fortaleza</strong> ("Mulher Forte") nega o direito à vulnerabilidade. Altos índices de feminicídio e violência obstétrica. Negação histórica de sua dimensão de <strong>sujeito de desejo</strong>.</p>
+        <ul class="custom">
+          <li>Atlas da Violência 2026: das 3.642 mulheres assassinadas, <strong>68% eram negras</strong>.</li>
+          <li>Censo IBGE 2010: mais de <strong>52%</strong> das mulheres negras não viviam em união; 51,1% dos lares chefiados exclusivamente por mulheres negras (Ipea, 2013) — <u>maternidade solo</u>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Homem negro</h3>
+        <p>Leitura do corpo negro masculino como <span class="destaque">essencialmente perigoso</span> — olhar social que <u>destitui sua humanidade</u> (<em>Pele Negra, Máscaras Brancas</em> — Fanon).</p>
+        <p>Naturalização da letalidade policial e do encarceramento em massa como <span class="destaque">políticas de controle populacional</span>. Masculinidade forjada na <span class="destaque">negação da ternura e da fragilidade</span>: adoecimento psíquico, silenciamento emocional e alienação de si.</p>
+        <ul class="custom">
+          <li>Pessoas negras: <strong>77% do total de assassinatos</strong> no país.</li>
+          <li>Um cidadão negro tem <strong>2,7 vezes mais chances</strong> de ser vítima de homicídio (risco 170,3% maior).</li>
+          <li>Vítimas letais concentradas na <u>juventude do sexo masculino</u>, sobretudo por armas de fogo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">Implicações na saúde</h2>
+    <ul class="custom">
+      <li><strong>Neusa Santos Souza:</strong> o racismo impõe a branquitude como ideal estético, moral e social — o sujeito negro <u>internaliza representações negativas de si mesmo</u>.</li>
+      <li><strong>Isildinha Baptista Nogueira:</strong> contaminação das estruturas psíquicas pelas condições objetivas de dominação — o corpo vivido como ferida aberta ou objeto persecutório.</li>
+      <li>A recusa coletiva do racismo <strong>invalida a vivência do sujeito</strong>: desamparo e desrealização; a queixa é desqualificada como "mimimi".</li>
+      <li>Se existe racismo, <u>mas não</u> existem racistas, então... <span class="destaque">o racismo é um crime perfeito — Munanga</span>.</li>
+    </ul>
+
+    <blockquote>"Eu sinto o problema racial como uma ferida. É uma coisa que penso e sinto todo o tempo. É um negócio que não cicatriza nunca." — <strong>Neusa Santos Souza, <em>Tornar-se Negro</em></strong></blockquote>
+
+    <h2 style="font-size:1.35rem;margin-top:36px;">Normativas do CFP</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Instrumento</th><th>Determinação</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Resolução CFP nº 018/2002</strong></td>
+            <td>Veda o uso de instrumentos ou técnicas psicológicas para <u>criar, manter ou reforçar preconceitos, estigmas ou estereótipos raciais</u> (lembram da frenologia?). A conivência com o racismo constitui violação ética grave.</td>
+          </tr>
+          <tr>
+            <td><strong>Referências Técnicas (2017)</strong></td>
+            <td>A Psicologia <u>não individualiza</u> demandas que são fruto do racismo estrutural. O diagnóstico psicossocial deve contemplar a violência racial.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="reflexao">
+      <h3>O Lugar Ético: Omissão vs. Implicação</h3>
+      <p>Se o racismo produz morte e dilaceramento psíquico, a <span class="destaque">omissão</span> do profissional atua como <span class="destaque">manutenção</span> do <em>status quo</em> e cumplicidade com a violência.</p>
+      <p style="margin-top:12px;">A <strong>neutralidade</strong> é <span class="destaque">epistemologicamente impossível</span> e <span class="destaque">eticamente incompatível</span> com os Princípios Fundamentais do Código de Ética.</p>
+      <p style="margin-top:12px;"><strong>O letramento racial é uma lente transversal e obrigatória</strong> para a atuação clínica, institucional e comunitária — orientando laudos, avaliações psicológicas e projetos de estágio sob uma <span class="destaque">perspectiva antirracista</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="serif">Ética e Regulamentação na Pesquisa Científica</p>
+  <p>Material didático compilado a partir das aulas da Profa. Me. Daniela Morais de Sant'Anna.</p>
+  <p style="margin-top:12px;font-size:.82rem;">Código de Nuremberg · Declaração de Helsinki · Relatório Belmont · Resolução CFP nº 010/2005 · Bioética · Prática Antirracista</p>
+</footer>
+
+</body>
+</html>
